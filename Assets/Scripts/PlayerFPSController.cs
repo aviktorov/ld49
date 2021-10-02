@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: jump? run?
-
 public class PlayerFPSController : MonoBehaviour
 {
 	public float turnSpeed = 360.0f;
@@ -22,6 +20,7 @@ public class PlayerFPSController : MonoBehaviour
 	private Camera cachedCamera;
 	private Transform cachedCameraTransform;
 	private Rigidbody cachedRigidbody;
+	private PlayerInput cachedPlayerInput;
 
 	private Vector2 angles;
 	private Quaternion initialOrientation;
@@ -32,6 +31,7 @@ public class PlayerFPSController : MonoBehaviour
 		cachedCamera = GetComponentInChildren<Camera>();
 		cachedCameraTransform = cachedCamera.transform;
 		cachedRigidbody = GetComponent<Rigidbody>();
+		cachedPlayerInput = GetComponent<PlayerInput>();
 
 		initialOrientation = cachedCameraTransform.localRotation;
 		initialFov = cachedCamera.fieldOfView;
@@ -43,27 +43,14 @@ public class PlayerFPSController : MonoBehaviour
 
 	private void Update()
 	{
-		bool isSprinting = Input.GetButton("Sprint");
-
 		// aim
-		Vector2 mouseDelta = new Vector2(
-			Input.GetAxis("Mouse X"),
-			Input.GetAxis("Mouse Y")
-		);
-
-		angles += mouseDelta * turnSpeed * Time.deltaTime;
+		angles += cachedPlayerInput.mouseDelta * turnSpeed * Time.deltaTime;
 		angles.y = Mathf.Clamp(angles.y, -ANGLE_LIMIT, ANGLE_LIMIT);
 
 		cachedCameraTransform.localRotation = initialOrientation * Quaternion.Euler(-angles.y, angles.x, 0.0f);
 
 		// movement
-		Vector3 movement = new Vector3(
-			Input.GetAxis("Horizontal"),
-			Input.GetAxis("Vertical"),
-			0.0f
-		);
-
-		movement = cachedCameraTransform.forward * movement.y + cachedCameraTransform.right * movement.x;
+		Vector3 movement = cachedCameraTransform.forward * cachedPlayerInput.moveDirection.y + cachedCameraTransform.right * cachedPlayerInput.moveDirection.x;
 
 		if (movement.sqrMagnitude > 1)
 			movement.Normalize();
@@ -71,7 +58,7 @@ public class PlayerFPSController : MonoBehaviour
 		// jump
 		float verticalVelocity = cachedRigidbody.velocity.y;
 
-		if (onGround && Input.GetButtonDown("Jump"))
+		if (onGround && cachedPlayerInput.jumpPulse)
 		{
 			verticalVelocity = jumpSpeed;
 			onGround = false;
@@ -79,7 +66,7 @@ public class PlayerFPSController : MonoBehaviour
 
 		// apply
 		if (onGround)
-			movement *= isSprinting ? runSpeed : walkSpeed;
+			movement *= cachedPlayerInput.sprinting ? runSpeed : walkSpeed;
 		else
 			movement = Vector3.Lerp(cachedRigidbody.velocity, movement * airSpeed, airDrag * Time.deltaTime);
 
@@ -93,7 +80,7 @@ public class PlayerFPSController : MonoBehaviour
 		// camera fov
 		float targetFov = initialFov;
 
-		if (onGround && isSprinting)
+		if (onGround && cachedPlayerInput.sprinting)
 			targetFov = initialFov * runFovMultiplier;
 
 		cachedCamera.fieldOfView = Mathf.Lerp(cachedCamera.fieldOfView, targetFov, fovSmoothness * Time.deltaTime);
