@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UITemp : MonoBehaviour
 {
-	public ElectricalDevice device;
+	public DynamoMachine device;
 
 	private TMPro.TMP_Text cachedText;
 

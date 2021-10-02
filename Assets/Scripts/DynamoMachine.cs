@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElectricalDevice : MonoBehaviour
+public class DynamoMachine : MonoBehaviour
 {
 	public AnimationCurve wattageOutput;
 	public float maxWattage = 200.0f;
