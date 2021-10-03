@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Battery : MonoBehaviour
 {
-	public float maxCapacity = 100.0f*3600.0f;
+	public float maxCapacity = 100.0f * 3600.0f;
 	public float maxChargeWattage = 100.0f;
 
 	private Rigidbody cachedRigidbody = null;
 	private BatterySocket cachedSocket = null;
 	private float currentCapacity = 0.0f;
+
+	public float ChargePercentage => Mathf.Clamp(currentCapacity / maxCapacity * 100.0f, 0.0f, 100.0f);
 
 	public void Detach()
 	{
