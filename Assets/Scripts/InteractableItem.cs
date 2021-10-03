@@ -7,6 +7,15 @@ public class InteractableItem : MonoBehaviour
 	public int defaultLayer = 0;
 	public int firstPersonLayer = 6;
 
+	public float Drain(float wattage, float deltaTime)
+	{
+		DynamoMachine dynamoMachine = GetComponent<DynamoMachine>();
+		if (dynamoMachine)
+			return dynamoMachine.Wattage;
+
+		return 0.0f;
+	}
+
 	public void Use()
 	{
 		DynamoMachine dynamoMachine = GetComponent<DynamoMachine>();
@@ -14,13 +23,32 @@ public class InteractableItem : MonoBehaviour
 			dynamoMachine.Use();
 	}
 
-	public void Attach(Transform parent)
+	public void AttachToPlayer(Transform socket)
 	{
+		Battery battery = GetComponent<Battery>();
+		if (battery)
+			battery.Detach();
+
 		DecorateGameObject(gameObject, true);
 
-		gameObject.transform.position = parent.position;
-		gameObject.transform.rotation = parent.rotation;
-		gameObject.transform.parent = parent;
+		gameObject.transform.position = socket.position;
+		gameObject.transform.rotation = socket.rotation;
+		gameObject.transform.parent = socket;
+	}
+
+	public void Attach(BatterySocket socket)
+	{
+		if (!socket)
+			return;
+
+		Battery battery = GetComponent<Battery>();
+		if (!battery)
+			return;
+
+		DecorateGameObject(gameObject, false);
+		gameObject.transform.parent = null;
+		
+		battery.Attach(socket);
 	}
 
 	public void Throw(Vector3 impulse)
@@ -64,5 +92,11 @@ public class InteractableItem : MonoBehaviour
 
 		foreach (Transform child in gameObject.transform)
 			DecorateGameObject(child.gameObject, firstPerson);
+	}
+
+	private void OnTriggerEnter(Collider collider)
+	{
+		BatterySocket socket = collider.GetComponent<BatterySocket>();
+		Attach(socket);
 	}
 }

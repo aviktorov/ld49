@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class LightBulb : MonoBehaviour
 {
-	public DynamoMachine device;
-
 	public AnimationCurve intensityFalloff;
-	public float minWattage = 5.0f;
-	public float maxWattage = 10.0f;
 
 	private float cachedLightIntensity = 0.0f;
 	private float cachedEmissiveIntensity = 0.0f;
+	private ElectricalDevice cachedElectricalDevice;
 	private Light cachedLight;
 	private Renderer cachedRenderer;
 	private Material cachedMaterial;
 
 	private void Awake()
 	{
+		cachedElectricalDevice = GetComponent<ElectricalDevice>();
 		cachedLight = GetComponent<Light>();
 		cachedLightIntensity = cachedLight.intensity;
 
@@ -28,10 +26,10 @@ public class LightBulb : MonoBehaviour
 
 	private void Update()
 	{
-		if (!device)
+		if (!cachedElectricalDevice)
 			return;
 
-		float wattageLerp = Mathf.Clamp01((device.Wattage - minWattage) / (maxWattage - minWattage));
+		float wattageLerp = Mathf.Clamp01(cachedElectricalDevice.CurrentWattageNormalized);
 		float intensityLerp = intensityFalloff.Evaluate(wattageLerp);
 
 		cachedLight.intensity = cachedLightIntensity * intensityLerp;

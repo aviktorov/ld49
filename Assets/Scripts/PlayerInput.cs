@@ -23,6 +23,9 @@ public class PlayerInput : MonoBehaviour
 	public bool throwPulse = false;
 
 	[HideInInspector]
+	public bool charging = false;
+
+	[HideInInspector]
 	public bool sprinting = false;
 
 	// Update is called once per frame
@@ -34,6 +37,7 @@ public class PlayerInput : MonoBehaviour
 		usePulse = Input.GetButtonDown("Fire1");
 		grabDropPulse = Input.GetButtonDown("Fire2");
 		throwPulse = Input.GetButtonDown("Fire3");
+		charging = Input.GetButton("Charge");
 		sprinting = Input.GetButton("Sprint");
 	}
 }
