@@ -12,7 +12,7 @@ public class DynamoMachineHandleAnimation : MonoBehaviour
 
 	private void Awake()
 	{
-		cachedDynamoMachine = GetComponent<DynamoMachine>();
+		cachedDynamoMachine = GetComponentInParent<DynamoMachine>();
 	}
 
 	private void Update()
@@ -25,3 +25,15 @@ public class DynamoMachineHandleAnimation : MonoBehaviour
 		handle.rotation *= Quaternion.AngleAxis(velocity * Time.deltaTime, Vector3.back);
 	}
 }
+
+// physics with rigidbody & collider
+	// disable kinematic rigidbody, enable colliders
+	// enable kinematic rigidbody, disable colliders
+
+// 3d world visuals
+	// with default layer
+	// with opaque material
+
+// fps world visuals
+	// with fps item layer
+	// with transparent fps material

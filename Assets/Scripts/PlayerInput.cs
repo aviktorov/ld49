@@ -17,6 +17,12 @@ public class PlayerInput : MonoBehaviour
 	public bool usePulse = false;
 
 	[HideInInspector]
+	public bool grabDropPulse = false;
+
+	[HideInInspector]
+	public bool throwPulse = false;
+
+	[HideInInspector]
 	public bool sprinting = false;
 
 	// Update is called once per frame
@@ -26,6 +32,8 @@ public class PlayerInput : MonoBehaviour
 		moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		jumpPulse = Input.GetButtonDown("Jump");
 		usePulse = Input.GetButtonDown("Fire1");
+		grabDropPulse = Input.GetButtonDown("Fire2");
+		throwPulse = Input.GetButtonDown("Fire3");
 		sprinting = Input.GetButton("Sprint");
 	}
 }

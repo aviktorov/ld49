@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class UITemp : MonoBehaviour
 {
-	public DynamoMachine device;
-
+	private DynamoMachine cachedDynamoMachine;
 	private TMPro.TMP_Text cachedText;
 
 	private void Awake()
 	{
 		cachedText = GetComponent<TMPro.TMP_Text>();
+		cachedDynamoMachine = GetComponentInParent<DynamoMachine>();
 	}
 
 	private void Update()
 	{
-		if (!cachedText || !device)
+		if (!cachedText || !cachedDynamoMachine)
 			return;
 
-		cachedText.text = string.Format("{0:000.00} / {1} W", device.Wattage, device.MaxWattage);
+		cachedText.text = string.Format("{0:000.00} / {1} W", cachedDynamoMachine.Wattage, cachedDynamoMachine.MaxWattage);
 	}
 }
