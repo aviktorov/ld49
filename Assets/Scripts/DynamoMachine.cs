@@ -7,25 +7,22 @@ public class DynamoMachine : MonoBehaviour
 	public AnimationCurve wattageOutput;
 	public float maxWattage = 200.0f;
 	public float decaySpeed = 1.0f;
-	public float wattageIncreasePerUse = 0.2f;
+	public float wattagePercentIncreasePerUse = 0.2f;
 
 	private float currentOutput = 0.0f;
-	private PlayerInput cachedPlayerInput;
 
-	public float currentWattage => Mathf.Max(0.0f, wattageOutput.Evaluate(currentOutput) * maxWattage);
+	public float Percentage => currentOutput;
+	public float Wattage => Mathf.Max(0.0f, wattageOutput.Evaluate(currentOutput) * maxWattage);
+	public float MaxWattage => maxWattage;
 
-	private void Awake()
+	public void Use()
 	{
-		cachedPlayerInput = GetComponent<PlayerInput>();
+		currentOutput += wattagePercentIncreasePerUse;
 	}
 
 	private void Update()
 	{
-		if (cachedPlayerInput.usePulse)
-			currentOutput += wattageIncreasePerUse;
-		else
-			currentOutput -= decaySpeed * Time.deltaTime;
-
+		currentOutput -= decaySpeed * Time.deltaTime;
 		currentOutput = Mathf.Clamp01(currentOutput);
 	}
 }

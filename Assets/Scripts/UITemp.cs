@@ -18,6 +18,6 @@ public class UITemp : MonoBehaviour
 		if (!cachedText || !device)
 			return;
 
-		cachedText.text = string.Format("{0:N2} / {1} W", device.currentWattage, device.maxWattage);
+		cachedText.text = string.Format("{0:000.00} / {1} W", device.Wattage, device.MaxWattage);
 	}
 }

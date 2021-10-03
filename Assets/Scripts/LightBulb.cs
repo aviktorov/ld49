@@ -31,7 +31,7 @@ public class LightBulb : MonoBehaviour
 		if (!device)
 			return;
 
-		float wattageLerp = Mathf.Clamp01((device.currentWattage - minWattage) / (maxWattage - minWattage));
+		float wattageLerp = Mathf.Clamp01((device.Wattage - minWattage) / (maxWattage - minWattage));
 		float intensityLerp = intensityFalloff.Evaluate(wattageLerp);
 
 		cachedLight.intensity = cachedLightIntensity * intensityLerp;
