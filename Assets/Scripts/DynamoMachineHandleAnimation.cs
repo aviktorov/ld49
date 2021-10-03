@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DynamoMachineHandleAnimation : MonoBehaviour
 {
-	public AnimationCurve animation;
+	public AnimationCurve rotationFalloff;
 	public Transform handle = null;
 	public float rotationSpeed = 30.0f;
 
@@ -20,7 +20,7 @@ public class DynamoMachineHandleAnimation : MonoBehaviour
 		if (!handle || !cachedDynamoMachine)
 			return;
 
-		float velocity = Mathf.Clamp01(animation.Evaluate(cachedDynamoMachine.Percentage)) * rotationSpeed;
+		float velocity = Mathf.Clamp01(rotationFalloff.Evaluate(cachedDynamoMachine.Percentage)) * rotationSpeed;
 
 		handle.rotation *= Quaternion.AngleAxis(velocity * Time.deltaTime, Vector3.back);
 	}
