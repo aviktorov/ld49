@@ -17,6 +17,9 @@ public class PlayerInput : MonoBehaviour
 	public bool usePulse = false;
 
 	[HideInInspector]
+	public bool altUsePulse = false;
+
+	[HideInInspector]
 	public bool grabDropPulse = false;
 
 	[HideInInspector]
@@ -31,7 +34,8 @@ public class PlayerInput : MonoBehaviour
 		mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 		moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		jumpPulse = Input.GetButtonDown("Jump");
-		usePulse = Input.GetButtonDown("Fire1");
+		usePulse = Input.GetButtonDown("Use");
+		altUsePulse = Input.GetButtonDown("AltUse");
 		grabDropPulse = Input.GetButtonDown("Fire2");
 		throwPulse = Input.GetButtonDown("Fire3");
 		sprinting = Input.GetButton("Sprint");

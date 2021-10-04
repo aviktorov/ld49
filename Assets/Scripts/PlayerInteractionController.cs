@@ -45,6 +45,9 @@ public class PlayerInteractionController : MonoBehaviour
 			if (cachedPlayerInput.usePulse)
 				currentItem.Use();
 
+			if (cachedPlayerInput.altUsePulse)
+				currentItem.AltUse();
+
 			if (electricalDevice)
 				electricalDevice.Charge(currentItem);
 
@@ -71,6 +74,9 @@ public class PlayerInteractionController : MonoBehaviour
 		{
 			if (cachedPlayerInput.usePulse)
 				interactableItem.Use();
+
+			if (cachedPlayerInput.altUsePulse)
+				interactableItem.AltUse();
 
 			if (cachedPlayerInput.grabDropPulse)
 			{

@@ -23,13 +23,24 @@ public class InteractableItem : MonoBehaviour
 		if (dynamoMachine)
 			dynamoMachine.Use();
 
-		OrderStationButton button = GetComponent<OrderStationButton>();
-		if (button)
-			button.Press();
+		OrderStationButton orderStationButton = GetComponent<OrderStationButton>();
+		if (orderStationButton)
+			orderStationButton.Press();
 
-		OrderStationKnob knob = GetComponent<OrderStationKnob>();
-		if (knob)
-			knob.Turn();
+		OrderStationKnob orderStationKnob = GetComponent<OrderStationKnob>();
+		if (orderStationKnob)
+			orderStationKnob.Turn();
+
+		RadioKnob radioKnob = GetComponent<RadioKnob>();
+		if (radioKnob)
+			radioKnob.TurnDown();
+	}
+
+	public void AltUse()
+	{
+		RadioKnob radioKnob = GetComponent<RadioKnob>();
+		if (radioKnob)
+			radioKnob.TurnUp();
 	}
 
 	public void AttachToPlayer(Transform socket)
