@@ -52,6 +52,10 @@ public class InteractableItem : MonoBehaviour
 		if (battery)
 			battery.Detach();
 
+		TrinketStar star = GetComponent<TrinketStar>();
+		if (star)
+			star.Detach();
+
 		DecorateGameObject(gameObject, true);
 
 		gameObject.transform.position = socket.position;
@@ -105,6 +109,7 @@ public class InteractableItem : MonoBehaviour
 	private void DecorateGameObject(GameObject gameObject, bool firstPerson)
 	{
 		FPSMaterial[] materials = gameObject.GetComponents<FPSMaterial>();
+		FPSMultiMaterial[] multiMaterials = gameObject.GetComponents<FPSMultiMaterial>();
 		Collider[] colliders = gameObject.GetComponents<Collider>();
 		Rigidbody rigidbody = gameObject.GetComponent<Rigidbody>();
 
@@ -116,6 +121,9 @@ public class InteractableItem : MonoBehaviour
 
 		foreach (FPSMaterial material in materials)
 			material.Decorate(firstPerson);
+
+		foreach (FPSMultiMaterial multiMaterial in multiMaterials)
+			multiMaterial.Decorate(firstPerson);
 
 		gameObject.layer = firstPerson ? firstPersonLayer : defaultLayer;
 
@@ -130,5 +138,20 @@ public class InteractableItem : MonoBehaviour
 
 		BatterySocket socket = collider.GetComponent<BatterySocket>();
 		Attach(socket);
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (!movable)
+			return;
+
+		if (collision.gameObject.tag == "Player")
+			return;
+
+		TrinketStar star = GetComponent<TrinketStar>();
+		if (!star)
+			return;
+
+		star.Attach(collision);
 	}
 }

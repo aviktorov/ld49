@@ -34,10 +34,10 @@ public class PlayerInteractionController : MonoBehaviour
 		
 		if (hasHit)
 		{
-			electricalDevice = hit.collider.GetComponent<ElectricalDevice>();
-			interactableItem = hit.collider.GetComponent<InteractableItem>();
-			battery = hit.collider.GetComponent<Battery>();
-			batterySocket = hit.collider.GetComponent<BatterySocket>();
+			electricalDevice = hit.collider.GetComponentInParent<ElectricalDevice>();
+			interactableItem = hit.collider.GetComponentInParent<InteractableItem>();
+			battery = hit.collider.GetComponentInParent<Battery>();
+			batterySocket = hit.collider.GetComponentInParent<BatterySocket>();
 		}
 
 		if (currentItem)

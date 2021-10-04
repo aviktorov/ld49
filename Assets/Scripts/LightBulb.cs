@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class LightBulb : MonoBehaviour
 {
-	public AnimationCurve intensityFalloff;
+	public int materialIndex = 0;
+	public AnimationCurve intensityFalloff = AnimationCurve.EaseInOut(0.0f, 0.0f, 1.0f, 1.0f);
 
 	private float cachedLightIntensity = 0.0f;
 	private float cachedEmissiveIntensity = 0.0f;
 	private ElectricalDevice cachedElectricalDevice;
 	private Light cachedLight;
 	private Renderer cachedRenderer;
-	private Material cachedMaterial;
+	private Color cachedEmissiveColorLDR;
 
 	private void Awake()
 	{
-		cachedElectricalDevice = GetComponent<ElectricalDevice>();
-		cachedLight = GetComponent<Light>();
-		cachedLightIntensity = cachedLight.intensity;
+		cachedElectricalDevice = GetComponentInParent<ElectricalDevice>();
+		cachedLight = GetComponentInParent<Light>();
+		if (cachedLight)
+			cachedLightIntensity = cachedLight.intensity;
 
 		cachedRenderer = GetComponent<Renderer>();
-		cachedMaterial = cachedRenderer.material;
-		cachedEmissiveIntensity = cachedMaterial.GetFloat("_EmissiveIntensity");
+		cachedEmissiveColorLDR = cachedRenderer.sharedMaterials[materialIndex].GetColor("_EmissiveColorLDR");
+		cachedEmissiveIntensity = cachedRenderer.sharedMaterials[materialIndex].GetFloat("_EmissiveIntensity");
 	}
 
 	private void Update()
@@ -32,9 +34,9 @@ public class LightBulb : MonoBehaviour
 		float wattageLerp = Mathf.Clamp01(cachedElectricalDevice.CurrentWattageNormalized);
 		float intensityLerp = intensityFalloff.Evaluate(wattageLerp);
 
-		cachedLight.intensity = cachedLightIntensity * intensityLerp;
+		if (cachedLight)
+			cachedLight.intensity = cachedLightIntensity * intensityLerp;
 
-		Color emissiveColorLDR = cachedMaterial.GetColor("_EmissiveColorLDR");
-		cachedMaterial.SetColor("_EmissiveColor", emissiveColorLDR.linear * cachedEmissiveIntensity * intensityLerp);
+		cachedRenderer.materials[materialIndex].SetColor("_EmissiveColor", cachedEmissiveColorLDR.linear * cachedEmissiveIntensity * intensityLerp);
 	}
 }
