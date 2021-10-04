@@ -12,6 +12,9 @@ public class ElectricalDevice : MonoBehaviour
 	private float currentWattage = 0.0f;
 	private float extraWattage = 0.0f;
 
+	public bool Powered => currentWattage > minWattage;
+	public bool Overloaded => currentWattage > maxWattage;
+
 	public float CurrentWattage => currentWattage;
 	public float CurrentWattageNormalized => (currentWattage - minWattage) / (maxWattage - minWattage);
 

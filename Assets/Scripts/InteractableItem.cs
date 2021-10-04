@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractableItem : MonoBehaviour
 {
+	public bool movable = true;
 	public int defaultLayer = 0;
 	public int firstPersonLayer = 6;
 
@@ -21,10 +22,21 @@ public class InteractableItem : MonoBehaviour
 		DynamoMachine dynamoMachine = GetComponent<DynamoMachine>();
 		if (dynamoMachine)
 			dynamoMachine.Use();
+
+		OrderStationButton button = GetComponent<OrderStationButton>();
+		if (button)
+			button.Press();
+
+		OrderStationKnob knob = GetComponent<OrderStationKnob>();
+		if (knob)
+			knob.Turn();
 	}
 
 	public void AttachToPlayer(Transform socket)
 	{
+		if (!movable)
+			return;
+
 		Battery battery = GetComponent<Battery>();
 		if (battery)
 			battery.Detach();
@@ -38,6 +50,9 @@ public class InteractableItem : MonoBehaviour
 
 	public void Attach(BatterySocket socket)
 	{
+		if (!movable)
+			return;
+
 		if (!socket)
 			return;
 
@@ -53,6 +68,9 @@ public class InteractableItem : MonoBehaviour
 
 	public void Throw(Vector3 impulse)
 	{
+		if (!movable)
+			return;
+
 		DecorateGameObject(gameObject, false);
 		gameObject.transform.parent = null;
 
@@ -96,6 +114,9 @@ public class InteractableItem : MonoBehaviour
 
 	private void OnTriggerEnter(Collider collider)
 	{
+		if (!movable)
+			return;
+
 		BatterySocket socket = collider.GetComponent<BatterySocket>();
 		Attach(socket);
 	}
