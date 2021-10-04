@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7729305348312305636}
   - component: {fileID: 3658836997585401931}
   - component: {fileID: 2954575172295657276}
-  - component: {fileID: 5820053306781944153}
+  - component: {fileID: 7555281355356995735}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -65,7 +65,12 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3ba8f082a16c1e64697b8fd174eaab2a, type: 2}
+  - {fileID: 2100000, guid: 58d278a421e7df24aa478c2deecc472a, type: 2}
+  - {fileID: 2100000, guid: 82208a6795254354bb40a0db69c76bf2, type: 2}
+  - {fileID: 2100000, guid: 82208a6795254354bb40a0db69c76bf2, type: 2}
+  - {fileID: 2100000, guid: 0183f0a20a09e284c95a936ab245d9ad, type: 2}
+  - {fileID: 2100000, guid: 0183f0a20a09e284c95a936ab245d9ad, type: 2}
+  - {fileID: 2100000, guid: b0dd591af900e1240bb77f7dd688171c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,7 +130,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   handle: {fileID: 1664965357919873515}
   rotationSpeed: 1000
---- !u!114 &5820053306781944153
+--- !u!114 &7555281355356995735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,11 +139,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3549666955210567520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d1ad31d19f7b75468d687d0c7866d02, type: 3}
+  m_Script: {fileID: 11500000, guid: ad2ed37473918294bb5ecfdeea031c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMaterial: {fileID: 2100000, guid: 3ba8f082a16c1e64697b8fd174eaab2a, type: 2}
-  fpsMaterial: {fileID: 2100000, guid: 9e3eb6e229a85f74b80535e148df2edd, type: 2}
+  defaultMaterials:
+  - {fileID: 2100000, guid: 58d278a421e7df24aa478c2deecc472a, type: 2}
+  - {fileID: 2100000, guid: 82208a6795254354bb40a0db69c76bf2, type: 2}
+  - {fileID: 2100000, guid: 82208a6795254354bb40a0db69c76bf2, type: 2}
+  - {fileID: 2100000, guid: 0183f0a20a09e284c95a936ab245d9ad, type: 2}
+  - {fileID: 2100000, guid: 0183f0a20a09e284c95a936ab245d9ad, type: 2}
+  - {fileID: 2100000, guid: b0dd591af900e1240bb77f7dd688171c, type: 2}
+  fpsMaterials:
+  - {fileID: 2100000, guid: 368d8892f1f14fe49a878a767e51c150, type: 2}
+  - {fileID: 2100000, guid: e18d5f8d35202bb488c3f0b721c26900, type: 2}
+  - {fileID: 2100000, guid: e18d5f8d35202bb488c3f0b721c26900, type: 2}
+  - {fileID: 2100000, guid: 22f3b9aefad95124cb899ec44f892228, type: 2}
+  - {fileID: 2100000, guid: 22f3b9aefad95124cb899ec44f892228, type: 2}
+  - {fileID: 2100000, guid: 28837c637ecc831498eb8ef92bc367b2, type: 2}
 --- !u!1 &3672935865043309291
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +417,7 @@ GameObject:
   - component: {fileID: 668154728391274017}
   - component: {fileID: 3908612582718513970}
   - component: {fileID: 4465537779729620526}
+  - component: {fileID: 8957692181421578960}
   m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
@@ -450,7 +468,8 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3ba8f082a16c1e64697b8fd174eaab2a, type: 2}
+  - {fileID: 2100000, guid: 0183f0a20a09e284c95a936ab245d9ad, type: 2}
+  - {fileID: 2100000, guid: 82208a6795254354bb40a0db69c76bf2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -486,6 +505,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMaterial: {fileID: 2100000, guid: 3ba8f082a16c1e64697b8fd174eaab2a, type: 2}
   fpsMaterial: {fileID: 2100000, guid: 9e3eb6e229a85f74b80535e148df2edd, type: 2}
+--- !u!114 &8957692181421578960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6567400473423624828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2ed37473918294bb5ecfdeea031c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMaterials:
+  - {fileID: 2100000, guid: 0183f0a20a09e284c95a936ab245d9ad, type: 2}
+  - {fileID: 2100000, guid: 82208a6795254354bb40a0db69c76bf2, type: 2}
+  fpsMaterials:
+  - {fileID: 2100000, guid: 22f3b9aefad95124cb899ec44f892228, type: 2}
+  - {fileID: 2100000, guid: e18d5f8d35202bb488c3f0b721c26900, type: 2}
 --- !u!1 &8348765441601329851
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,9 +639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42dbb8e594f5ee49b71ddd15c93877b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  firstPersonLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  movable: 1
+  defaultLayer: 0
+  firstPersonLayer: 6

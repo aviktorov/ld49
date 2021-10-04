@@ -3,7 +3,42 @@ guid: 04d0dd532f866de4aaf187c7b2222e8e
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LED - cyan
+    second: {fileID: 2100000, guid: 775eb09e9a5dc414f97c7f3c7ae170c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall
+    second: {fileID: 2100000, guid: c8f05a2ecc700fd44818ab3459ae2ddc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall - blue
+    second: {fileID: 2100000, guid: c6428c2cd32c719488d9c46f5173af8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall - dark
+    second: {fileID: 2100000, guid: 6e65288b74d8a944881ebb0e8d0d3ba4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastic - black
+    second: {fileID: 2100000, guid: 565111f1826fe4b46a44fd1d660ca2d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastic - green
+    second: {fileID: 2100000, guid: cb40e794c9912d245aef0b1353ba67e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Temnota - black
+    second: {fileID: 2100000, guid: 43127bdd14fdea144adbe89c49024221, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
