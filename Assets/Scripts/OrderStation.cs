@@ -13,6 +13,7 @@ public struct OrderDescription
 public class OrderStation : MonoBehaviour
 {
 	public List<OrderDescription> availableOrders = new List<OrderDescription>();
+	public DeliveryCenter deliveryCenter = null;
 
 	private ElectricalDevice cachedElectricalDevice;
 
@@ -82,7 +83,9 @@ public class OrderStation : MonoBehaviour
 		if (!orderedTrinket)
 			return;
 
-		// TODO: notify delivery center and spawn trinket
+		if (deliveryCenter)
+			deliveryCenter.SpawnTrinket(orderedTrinket);
+
 		orderedTrinket = null;
 	}
 }
