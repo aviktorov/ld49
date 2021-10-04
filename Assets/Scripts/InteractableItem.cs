@@ -92,6 +92,10 @@ public class InteractableItem : MonoBehaviour
 		Rigidbody rigidbody = gameObject.GetComponent<Rigidbody>();
 		if (rigidbody)
 			rigidbody.AddForce(impulse, ForceMode.Impulse);
+
+		TrinketSuriken trinketSuriken = GetComponent<TrinketSuriken>();
+		if (trinketSuriken)
+			trinketSuriken.Launch();
 	}
 
 	[ContextMenu("Switch to first person")]
