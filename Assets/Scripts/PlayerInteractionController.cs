@@ -45,10 +45,10 @@ public class PlayerInteractionController : MonoBehaviour
 			if (cachedPlayerInput.usePulse)
 				currentItem.Use();
 
-			if (cachedPlayerInput.charging && electricalDevice)
+			if (electricalDevice)
 				electricalDevice.Charge(currentItem);
 
-			if (cachedPlayerInput.charging && battery)
+			if (battery)
 				battery.Charge(currentItem);
 
 			if (cachedPlayerInput.grabDropPulse)
